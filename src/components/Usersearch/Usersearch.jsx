@@ -14,17 +14,16 @@ const Usersearch = () => {
   const defaultStates = {
     input: { placeholder: "Введіть нікнейм користувача Github" },
     submit: { color: "rgb(47, 79, 79)", value: "Пошук" },
-    showrepos_btn: { color: "rgb(0, 204, 255)", value: "Відобразити" },
   };
 
   const [submit_color, submit_setColor] = useState(
-    defaultStates.submit.color || "rgb(0,0,0"
+    defaultStates.submit.color || "rgb(0,0,0)"
   );
 
   const [usereposcontainer_opacity, set_usereposcontainer_opacity] = useState("0");
-  const [usereposcontainer_display, set_usereposcontainer_display] = useState("none");
-
-  const [input_placeholder, input_setPlaceholder] = useState(defaultStates.input.placeholder);
+  const [input_placeholder, set_input_placeholder] = useState(defaultStates.input.placeholder);
+  const [showrepos_btn, set_showrepos_btn] = useState(0);
+  const [user_repos, set_user_repos] = useState(null);
 
   const [userdata, setUserdata] = useState({
     login: "torvalds",
@@ -63,9 +62,6 @@ const Usersearch = () => {
     updated_at: "2023-05-27T22:53:46Z",
   });
 
-  const [userrepos, setUserRepos] = useState(null);
-  const [repos_show, set_reposShow] = useState(false);
-  const [showrepos_btn, set_showrepos_btn] = useState({value: defaultStates.showrepos_btn.value, color: defaultStates.showrepos_btn.color});
 
   useEffect(() => {
     // github_userdata()
@@ -73,7 +69,7 @@ const Usersearch = () => {
 
   const searchUser = (username) => {
     console.log('Треба знайти - '+username);
-    // fetch(userdata.repos_url).then((result) => setUserRepos(result));
+    // fetch(userdata.repos_url).then((result) => set_user_repos(result));
   };
 
   const onUserSearch = (e) => {
@@ -91,7 +87,7 @@ const Usersearch = () => {
 
     if (!input_value) {
       submit_setColor("rgb(220, 150, 60)");
-      input_setPlaceholder("Ви повинні вести нікнейм користувача");
+      set_input_placeholder("Ви повинні вести нікнейм користувача");
       return;
     }
 
@@ -101,25 +97,22 @@ const Usersearch = () => {
 
   const onInputActivate = () => {
     submit_setColor(defaultStates.submit.color);
-    input_setPlaceholder(defaultStates.input.placeholder);
+    set_input_placeholder(defaultStates.input.placeholder);
   };
 
   const showRepos = () => {
-    if (repos_show) {
+    if (showrepos_btn) {
+
       set_usereposcontainer_opacity(0);
-      set_showrepos_btn(defaultStates.showrepos_btn);
       setTimeout(() => {
-        set_reposShow(!repos_show);
-        set_usereposcontainer_display('none')
+        set_showrepos_btn(!showrepos_btn);
       }, 500);
+
     } else {
-      set_reposShow(!repos_show);
-      set_showrepos_btn({
-        ...showrepos_btn,
-        value: "Згорнути",
-      });
+
+      set_showrepos_btn(!showrepos_btn);
       set_usereposcontainer_opacity(1);
-      set_usereposcontainer_display('block')
+      
     }
   };
 
@@ -127,7 +120,7 @@ const Usersearch = () => {
     if (!userdata) return;
     if (!userdata.repos_url) return;
 
-    fetch(userdata.repos_url).then((result) => setUserRepos(result));
+    fetch(userdata.repos_url).then((result) => set_user_repos(result));
 
     showRepos();
   };
@@ -155,13 +148,13 @@ const Usersearch = () => {
         {userdata ? (
           <div className={styles.userfinder_content}>
             <div className={styles.user_info}>
-              <Userinfo name={userdata.name}/>
+              <Userinfo name={userdata.name} avatar_url={userdata.avatar_url} followers={userdata.followers} following={userdata.following} company={userdata.company} location={userdata.location} created={userdata.created_at} updated={userdata.updated_at}/>
 
               <div className={styles.userinfo_control}>
-                <p>Знайдено {userdata.public_repos} репозиторіїв...</p>
+                <p className={styles.userinfo_reposcount}>Знайдено {userdata.public_repos} репозиторіїв...</p>
 
                 {userdata && userdata.public_repos > 0 ? (
-                  <button onClick={getRepos} className={styles.userinfo_control_btn}>{showrepos_btn.value}</button>
+                  <button onClick={getRepos} className={styles.userinfo_control_btn}>{showrepos_btn ? 'Згорнути' : 'Розгорнути'}</button>
                 ) : (<></>)}
               </div> 
             </div>
@@ -169,10 +162,10 @@ const Usersearch = () => {
             <div
               className={styles.user_repos}
               ref={userrepos_container}
-              style={{ opacity: usereposcontainer_opacity, display: `${usereposcontainer_display}` }}
+              style={{ opacity: usereposcontainer_opacity, display: `${showrepos_btn ? 'block' : 'none'}` }}
             >
-              {userrepos && repos_show ? (
-                <List name={userdata.name} data={userrepos}></List>
+              {user_repos && showrepos_btn ? (
+                <List name={userdata.name} data={user_repos}></List>
               ) : (
                 <></>
               )}

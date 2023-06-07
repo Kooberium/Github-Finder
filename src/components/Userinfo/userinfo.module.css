@@ -1,5 +1,11 @@
-.userinfo_window {
 
+.userinfo_window {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px 10px;
+    font-family: 'Ubuntu';
+    border-radius: 8px;
+    flex-grow: 1;
 }
 
 .userinfo_list {
@@ -7,31 +13,77 @@
 }
 
 .userinfo_avatar {
-    border-radius: 8px;
+    border-radius: 50%;
     width: 3vw;
+}
+
+.userinfo_icon {
+    width: 2vw
 }
 
 .userinfo_name {
     font-family: Arial, Helvetica, sans-serif;
     margin-left: 10px;
+    
 }
 
-.userinfo_line {
-    margin: 4px 0px;
-    border-radius: 8px;
-    display: block;
-    width: 100%;
-    min-height: 4px;
-    background-color: rgb(66, 66, 66);
-}
-
-.userinfo_row {
-    display: flex;
-    align-items: flex-end;
-}
-
-.userinfo_row_2 {
+.userinfo_subs {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    display: -webkit-flex;
+    align-items: flex-end;
+    width: 100%;
+    row-gap: 4px;
+    margin: auto;
+}
+
+.userinfo_list{
+    display: flex;
+    flex-direction: column;
+    display: -webkit-flex;
+    -webkit-flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    row-gap: 8px;
+}
+
+.userinfo_listitem {
+    display: flex;
+    width: 90%;
+    box-sizing: border-box;
+    margin: auto;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: rgba(0, 0, 0, 0.192) solid;
+    padding: 7px 11px;
+    display: -webkit-flex;
+    /* background-color: azure; */
+}
+
+.userinfo_listitem  p,span {
+    font-size: 1vw;
+}
+
+.userinfo_timewrapper {
+    width: 100%;
+    column-gap: 8px;
+    justify-content: flex-end;
+    display: flex;
+    display: -webkit-flex;
+}
+
+
+
+@media screen and (max-width: 1080px) {
+    .userinfo_avatar {
+        width: 5vw;
+    }
+
+    .userinfo_icon {
+        width: 5vw;
+    }
+
+    .userinfo_listitem  p,span {
+        font-size: 2.5vw;
+    }
 }

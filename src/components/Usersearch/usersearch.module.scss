@@ -86,20 +86,21 @@
     align-items: center;
     justify-content: space-between;
     box-sizing: border-box;
-    width: 30%;
+    width: 40%;
     padding: 12px 18px;
     border-radius: 8px;
     background-color: white;
     transition: 1s all ease-in-out;
 }
 
-.userinfo_control {
- 
+.userinfo_reposcount {
+    margin-top: 8px;
 }
+
 
 .userinfo_control_btn {
     width: 12vw;
-    margin-top: 5px;
+    margin-top: 8px;
     padding: 7px 11px;
     font-size: 0.7vw;
     border-radius: 8px;
@@ -172,4 +173,9 @@
     .userinfo_control_btn {
         width: 100%;
     }
+
+    .userinfo_control_btn {
+        font-size: 2vw;
+    }
+
 }
