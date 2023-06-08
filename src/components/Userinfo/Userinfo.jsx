@@ -43,7 +43,7 @@ const Userinfo = (props) => {
                 <li className={styles.userinfo_listitem}>
                     <div className={styles.userinfo_subs}>
                       {/* {Цей метод знизу це мій власний метод який скорочує великі числа і робить їм приставку "k" щоб займали менше простору} */}
-                      <p>Підписники - {util_reducenumber(followers)}</p>
+                      <p>Підписники - {util_reducenumber(followers)+'k'}</p>
                       <p>Підписок - {following}</p>
                     </div>
                 </li>
