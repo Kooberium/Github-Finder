@@ -14,5 +14,17 @@
     margin: auto;
     border-radius: 8px;
     background-color: aliceblue;
-    min-height: 24vh;
+    border-top: 6px solid black;
+    min-height: 44vh;
+}
+
+.favrepos_empty_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: inherit;
+}
+
+.favrepos_empty_title {
+    font-size: 3vw;
 }

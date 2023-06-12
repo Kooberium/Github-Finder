@@ -15,8 +15,11 @@ const Favrepos = () => {
             {fav_list && fav_list.length > 0 ? (
               <List data={fav_list}></List>
             ) : (
-              <>
-              </>
+              <div className={styles.favrepos_empty_container}>
+                  <h1 className={styles.favrepos_empty_title}>
+                    Тут поки пусто:)
+                  </h1>
+              </div>
             )} 
            
         </div>

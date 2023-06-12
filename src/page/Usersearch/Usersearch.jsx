@@ -6,6 +6,7 @@ import List from "../../components/Reposlists/Reposlists";
 import styles from "./usersearch.module.css";
 
 import fetch from "../../api/fetch";
+import env from "react-dotenv";
 
 const Usersearch = () => {
   const form_ref = useRef(null)
@@ -25,51 +26,20 @@ const Usersearch = () => {
   const [showrepos_btn, set_showrepos_btn] = useState(0);
   const [user_repos, set_user_repos] = useState(null);
 
-  const [userdata, setUserdata] = useState({
-    login: "torvalds",
-    id: 1024025,
-    node_id: "MDQ6VXNlcjEwMjQwMjU=",
-    avatar_url: "https://avatars.githubusercontent.com/u/1024025?v=4",
-    gravatar_id: "",
-    url: "https://api.github.com/users/torvalds",
-    html_url: "https://github.com/torvalds",
-    followers_url: "https://api.github.com/users/torvalds/followers",
-    following_url:
-      "https://api.github.com/users/torvalds/following{/other_user}",
-    gists_url: "https://api.github.com/users/torvalds/gists{/gist_id}",
-    starred_url: "https://api.github.com/users/torvalds/starred{/owner}{/repo}",
-    subscriptions_url: "https://api.github.com/users/torvalds/subscriptions",
-    organizations_url: "https://api.github.com/users/torvalds/orgs",
-    repos_url: "https://api.github.com/users/torvalds/repos",
-    events_url: "https://api.github.com/users/torvalds/events{/privacy}",
-    received_events_url:
-      "https://api.github.com/users/torvalds/received_events",
-    type: "User",
-    site_admin: false,
-    name: "Linus Torvalds",
-    company: "Linux Foundation",
-    blog: "",
-    location: "Portland, OR",
-    email: null,
-    hireable: null,
-    bio: null,
-    twitter_username: null,
-    public_repos: 7,
-    public_gists: 0,
-    followers: 184391,
-    following: 0,
-    created_at: "2011-09-03T15:26:22Z",
-    updated_at: "2023-05-27T22:53:46Z",
-  });
+  const [userdata, setUserdata] = useState();
 
 
   useEffect(() => {
-    // github_userdata()
+
   }, []);
 
   const searchUser = (username) => {
-    console.log('Треба знайти - '+username);
-    // fetch(userdata.repos_url).then((result) => set_user_repos(result));
+    if (!username) return 'USERNAME ERROR'
+
+    const API = env.API_URL;
+    if (!API) return 'API ERROR';
+
+    fetch(`${API}/${username}`).then((result) => setUserdata(result));
   };
 
   const onUserSearch = (e) => {
@@ -80,9 +50,6 @@ const Usersearch = () => {
     const form = form_ref.current;
     
     const input = form.elements['controlpanel_input'];
-    const submit_btn = form.elements['controlpanel_submit'];
-
-
     const input_value = input.value;
 
     if (!input_value) {
@@ -100,6 +67,14 @@ const Usersearch = () => {
     set_input_placeholder(defaultStates.input.placeholder);
   };
 
+  const getRepos = () => {
+    if (!userdata) return;
+    if (!userdata.repos_url) return;
+    fetch(userdata.repos_url).then((result) => set_user_repos(result));
+
+    showRepos();
+  };
+
   const showRepos = () => {
     if (showrepos_btn) {
 
@@ -115,15 +90,6 @@ const Usersearch = () => {
       
     }
   };
-
-  const getRepos = () => {
-    if (!userdata) return;
-    if (!userdata.repos_url) return;
-    fetch(userdata.repos_url).then((result) => set_user_repos(result));
-
-    showRepos();
-  };
-
 
   return (
     <main className={styles.main}>
