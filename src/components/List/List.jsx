@@ -3,20 +3,14 @@ import React from "react";
 import styles from "./list.module.css";
 
 const List = (props) => {
-  const fake = []
-  for (let i = 0; i < 50; i++) {
-    fake.push({name: `name - ${i}`});
-  };
   return (
     <ul className={styles.list}>
-        {/* {props.data.map((el, i) => <li className={styles.list_item} key={i}>
-          <p>{el.name}</p>
-          <div>
-            <p>*</p>
-
-          </div>
-        </li>)} */}
-        {fake.map((el, i) => <li className={styles.list_item} key={i}>{el.name}</li>)}
+        {props.data.map((el, i) => <li className={styles.list_item} key={i}>
+          <a className={styles.list_item_link} href="#" target="_blank">
+            <p className={styles.list_item_title}>{el.name}</p>
+          </a>
+          <button className={styles.claim_btn}>Mark</button>
+        </li>)}
     </ul>
   );
 };
