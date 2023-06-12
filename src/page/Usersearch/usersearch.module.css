@@ -1,7 +1,7 @@
 .main {
   overflow: hidden;
   width: 100%;
-  min-height: 90vh;
+  height: 100%;
   background-color: rgb(94, 94, 94);
 }
 

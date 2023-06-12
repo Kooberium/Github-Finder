@@ -1,0 +1,33 @@
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('../../fonts/Ubuntu/Ubuntu-Medium.ttf');
+}
+
+
+
+.header {
+    width: 100%;
+    min-height: 10vh;
+    overflow: hidden;
+    box-sizing: border-box;
+    background-color: black;
+}
+
+.header_wrapper {
+    font-family: 'Ubuntu';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    width: 70%;
+    min-height: inherit;
+}
+
+.logo {
+    width: 4vw;
+}
+
+.title {
+    font-size: 1vw;
+    color: white;
+}

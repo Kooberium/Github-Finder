@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 
 import Userinfo from '../../components/Userinfo/Userinfo';
-import List from "../../components/List/List";
+import List from "../../components/Reposlists/Reposlists";
 
 import styles from "./usersearch.module.css";
 
@@ -119,7 +119,6 @@ const Usersearch = () => {
   const getRepos = () => {
     if (!userdata) return;
     if (!userdata.repos_url) return;
-
     fetch(userdata.repos_url).then((result) => set_user_repos(result));
 
     showRepos();

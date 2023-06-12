@@ -27,11 +27,18 @@
     font-size: 1.2vw;
     background-color: rgb(85, 159, 255);
     transition: 0.4s all ease-in-out;
-    border-left: 12px solid rgb(0, 0, 0);
     cursor: pointer;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.list_item_marked {
+    border-left: 12px solid rgb(30, 247, 178);
+}
+
+.list_item_unmarked {
+    border-left: 12px solid rgb(247, 30, 120);
 }
 
 .list_item:hover {
