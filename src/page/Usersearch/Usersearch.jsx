@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 
-import Userinfo from '../Userinfo/Userinfo';
-import List from "../List/List";
+import Userinfo from '../../components/Userinfo/Userinfo';
+import List from "../../components/List/List";
 
 import styles from "./usersearch.module.css";
 

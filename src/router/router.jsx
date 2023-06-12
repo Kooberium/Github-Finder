@@ -2,12 +2,17 @@ import React from 'react'
 import {Routes,Route} from 'react-router-dom';
 
 
-import Usersearch from "../components/Usersearch/Usersearch"
+import Usersearch from "../page/Usersearch/Usersearch"
+import Favrepos from '../page/Favrepos/Favrepos';
 
 const pages_data= [
     {
       path: "/",
       element: <Usersearch />,
+    },
+    {
+      path: "/favrepos",
+      element: <Favrepos />,
     },
 ];
 

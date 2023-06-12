@@ -7,7 +7,7 @@ const Navbar = () => {
     <div className={styles.navbar_wrapper}>
         <nav>
             <ul>
-
+                <li>123</li>
             </ul>
         </nav>
     </div>
