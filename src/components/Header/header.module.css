@@ -16,11 +16,16 @@
 .header_wrapper {
     font-family: 'Ubuntu';
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     margin: auto;
     width: 70%;
     min-height: inherit;
+}
+
+.header_logo_wrapper {
+    display: flex;
+    align-items: center;
 }
 
 .logo {
@@ -28,6 +33,7 @@
 }
 
 .title {
+    margin-left: 20px;
     font-size: 1vw;
     color: white;
 }

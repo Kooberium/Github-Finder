@@ -6,15 +6,19 @@ import Usersearch from "../page/Usersearch/Usersearch"
 import Favrepos from '../page/Favrepos/Favrepos';
 
 const pages_data= [
-    {
+    { 
+      name: 'Home',
       path: "/",
       element: <Usersearch />,
     },
     {
+      name: 'Favorite',
       path: "/favrepos",
       element: <Favrepos />,
     },
 ];
+
+export const pagesData = pages_data;
 
 const router = () => {
   return (

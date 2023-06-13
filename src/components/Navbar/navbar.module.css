@@ -1,0 +1,28 @@
+@font-face {
+    font-family: 'Ubuntu';
+    src: url('../../fonts/Ubuntu/Ubuntu-Bold.ttf');
+}
+
+
+.navbar_list {
+    font-family: 'Ubuntu';
+    font-size: 1vw;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    column-gap: 16px;
+}
+
+.navbar_link_default {
+    text-decoration: none;
+    color:  rgb(243, 243, 243);
+    transition: 1s all ease-in-out;
+}
+
+
+.navbar_link_current {
+    text-decoration: none;
+    color:  rgb(227, 27, 104);
+    transition: 1s all ease-in-out;
+
+}
