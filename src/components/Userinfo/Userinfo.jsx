@@ -43,8 +43,8 @@ const Userinfo = (props) => {
                 <li className={styles.userinfo_listitem}>
                     <div className={styles.userinfo_subs}>
                       {/* {Цей метод знизу це мій власний метод який скорочує великі числа і робить їм приставку "k" щоб займали менше простору} */}
-                      <p>Підписники - {util_reducenumber(followers)+'k'}</p>
-                      <p>Підписок - {following}</p>
+                      <p>Підписники - {util_reducenumber(followers)}</p>
+                      <p>Підписок - {util_reducenumber(following)}</p>
                     </div>
                 </li>
             </ul>
@@ -53,39 +53,3 @@ const Userinfo = (props) => {
 }
 
 export default Userinfo
-
-
-
-    {/* <div className={styles.userinfo_row}>
-                <img
-                  className={styles.userinfo_avatar}
-                  src={userdata.avatar_url}
-                  alt="Avatar"
-                />
-                <p className={styles.userinfo_name}>{userdata.name}</p>
-              </div>
-              <span className={styles.userinfo_line}></span>
-              <div className={styles.userinfo_row_2}>
-                <p>Підприщиків:{userdata.followers}</p>
-                <p>Підписок:{userdata.following}</p>
-              </div>
-              <span className={styles.userinfo_line}></span>
-
-              <div className={styles.userinfo_row_2}>
-                <p>
-                  Створено: {new Date(userdata.created_at).toLocaleDateString()}
-                </p>
-                <p>
-                  Оновлено: {new Date(userdata.updated_at).toLocaleDateString()}
-                </p>
-              </div>
-
-              <span className={styles.userinfo_line}></span>
-
-              <div className={styles.userinfo_row_2}>
-                <p>Компанія: {userdata.company}</p>
-                <p>Проживання: {userdata.location}</p>
-              </div>
-
-              <span className={styles.userinfo_line}></span>
-              */}
