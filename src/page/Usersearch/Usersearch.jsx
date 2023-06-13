@@ -31,7 +31,7 @@ const Usersearch = () => {
 
   useEffect(() => {
     getRepos();
-  }, [user_repos]);
+  }, [user_repos, userdata]);
 
   const searchUser = (username) => {
     if (!username) return 'USERNAME ERROR'
@@ -40,6 +40,15 @@ const Usersearch = () => {
     if (!API) return 'API ERROR';
 
     fetch(`${API}/${username}`).then((result) => {
+      if (result.message && result.message === 'Not Found') {
+        set_input_placeholder('Користувача не було знайдено!');
+        submit_setColor("rgb(220, 55, 60)");
+        
+        form_ref.current.reset()
+        return
+      };
+
+
       const toJSON = JSON.stringify(result);
       localStorage.setItem('github_user_data', toJSON);
       set_user_data(result)

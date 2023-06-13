@@ -67,8 +67,17 @@
 }
 
 
-@media screen and (max-width: 684px) {
+@media screen  and (max-width: 1400px) {
     .list {
         grid-template-columns: 1fr;
+    }
+}
+
+@media screen and (max-width: 1080px) {
+    .list_item {
+        font-size: 2vw;
+    }
+    .claim_btn {
+        font-size: 1.5vw;
     }
 }

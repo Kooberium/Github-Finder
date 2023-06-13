@@ -5,7 +5,7 @@
 
 
 
-.header {
+.footer {
     width: 100%;
     min-height: 10vh;
     overflow: hidden;
@@ -13,13 +13,13 @@
     background-color: black;
 }
 
-.header_wrapper {
+.footer_wrapper {
     font-family: 'Ubuntu';
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     margin: auto;
-    width: 70%;
+    width: 80%;
     min-height: inherit;
 }
 
@@ -30,4 +30,14 @@
 .title {
     font-size: 1vw;
     color: white;
+}
+
+.link {
+    margin-left: 20px;
+    text-decoration: none;
+    color: aquamarine;
+}
+
+.git_icon {
+    width: 2vw;
 }
