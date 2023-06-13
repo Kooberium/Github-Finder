@@ -18,27 +18,13 @@ const favoritereposSlice = createSlice({
     }
 })
 
-const userepositorySlice = createSlice({
-    name: 'User_Repository_Data',
-    initialState: [],
-    reducers: {
-        setData(state, action) {
-            state = action.payload;
-            return state;
-        },
-    }
-})
 
 export const {addRepository, removeRepository} = favoritereposSlice.actions;
-export const {setData} = userepositorySlice.actions;
-
-
 
 
 const store = configureStore({
     reducer: {
         favlist: favoritereposSlice.reducer,
-        reposlist: userepositorySlice.reducer,
     },
 });
 

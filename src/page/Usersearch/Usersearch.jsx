@@ -26,12 +26,12 @@ const Usersearch = () => {
   const [showrepos_btn, set_showrepos_btn] = useState(0);
   const [user_repos, set_user_repos] = useState(null);
 
-  const [userdata, setUserdata] = useState();
+  const [userdata, set_user_data] = useState(null || JSON.parse(localStorage.getItem('github_user_data')));
 
 
   useEffect(() => {
-
-  }, []);
+    getRepos();
+  }, [user_repos]);
 
   const searchUser = (username) => {
     if (!username) return 'USERNAME ERROR'
@@ -39,7 +39,15 @@ const Usersearch = () => {
     const API = env.API_URL;
     if (!API) return 'API ERROR';
 
-    fetch(`${API}/${username}`).then((result) => setUserdata(result));
+    fetch(`${API}/${username}`).then((result) => {
+      const toJSON = JSON.stringify(result);
+      localStorage.setItem('github_user_data', toJSON);
+      set_user_data(result)
+    });
+
+    setTimeout(() => {
+      getRepos()
+    }, 1000)
   };
 
   const onUserSearch = (e) => {
@@ -67,12 +75,10 @@ const Usersearch = () => {
     set_input_placeholder(defaultStates.input.placeholder);
   };
 
-  const getRepos = () => {
+  async function getRepos() {
     if (!userdata) return;
     if (!userdata.repos_url) return;
-    fetch(userdata.repos_url).then((result) => set_user_repos(result));
-
-    showRepos();
+    await fetch(userdata.repos_url).then((result) => set_user_repos(result));
   };
 
   const showRepos = () => {
@@ -113,13 +119,13 @@ const Usersearch = () => {
         {userdata ? (
           <div className={styles.userfinder_content}>
             <div className={styles.user_info}>
-              <Userinfo name={userdata.name} avatar_url={userdata.avatar_url} followers={userdata.followers} following={userdata.following} company={userdata.company} location={userdata.location} created={userdata.created_at} updated={userdata.updated_at}/>
+              <Userinfo name={userdata.name || userdata.login} avatar_url={userdata.avatar_url} followers={userdata.followers} following={userdata.following} company={userdata.company} location={userdata.location} created={userdata.created_at} updated={userdata.updated_at}/>
 
               <div className={styles.userinfo_control}>
                 <p className={styles.userinfo_reposcount}>Знайдено {userdata.public_repos} репозиторіїв...</p>
 
                 {userdata && userdata.public_repos > 0 ? (
-                  <button onClick={getRepos} className={styles.userinfo_control_btn}>{showrepos_btn ? 'Згорнути' : 'Розгорнути'}</button>
+                  <button onClick={showRepos} className={styles.userinfo_control_btn}>{showrepos_btn ? 'Згорнути' : 'Розгорнути'}</button>
                 ) : (<></>)}
               </div> 
             </div>
