@@ -19,7 +19,7 @@ const List = (props) => {
 
   return (
     <ul className={styles.list}>
-        {props.data.map((el, i) => <Reposlist whitelist={whitelist} key={i} id={el.id} name={el.name}/>)}
+        {props.data.map((el, i) => <Reposlist whitelist={whitelist} key={i} id={el.id} name={el.name} link={el.html_url}/>)}
     </ul>
   );
 };
