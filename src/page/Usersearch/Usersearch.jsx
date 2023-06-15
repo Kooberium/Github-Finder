@@ -25,13 +25,14 @@ const Usersearch = () => {
   const [input_placeholder, set_input_placeholder] = useState(defaultStates.input.placeholder);
   const [showrepos_btn, set_showrepos_btn] = useState(0);
   const [user_repos, set_user_repos] = useState(null);
+  const [repos_searched, set_repos_searched] = useState(false);
 
   const [userdata, set_user_data] = useState(null || JSON.parse(localStorage.getItem('github_user_data')));
 
 
   useEffect(() => {
-    getRepos();
-  }, [user_repos, userdata]);
+     fetchRepos();
+  }, [userdata]);
 
   const searchUser = (username) => {
     if (!username) return 'USERNAME ERROR'
@@ -51,12 +52,9 @@ const Usersearch = () => {
 
       const toJSON = JSON.stringify(result);
       localStorage.setItem('github_user_data', toJSON);
+
       set_user_data(result)
     });
-
-    setTimeout(() => {
-      getRepos()
-    }, 1000)
   };
 
   const onUserSearch = (e) => {
@@ -69,9 +67,17 @@ const Usersearch = () => {
     const input = form.elements['controlpanel_input'];
     const input_value = input.value;
 
+    if (userdata && userdata.login === input_value) {
+      submit_setColor("rgb(220, 150, 60)");
+      set_input_placeholder("Ви вже отримали дані цього користувача!");
+      form.reset();
+      return;
+    }
+
     if (!input_value) {
       submit_setColor("rgb(220, 150, 60)");
       set_input_placeholder("Ви повинні вести нікнейм користувача");
+      form.reset();
       return;
     }
 
@@ -84,15 +90,16 @@ const Usersearch = () => {
     set_input_placeholder(defaultStates.input.placeholder);
   };
 
-  async function getRepos() {
+
+   async function fetchRepos() {
     if (!userdata) return;
     if (!userdata.repos_url) return;
+    
     await fetch(userdata.repos_url).then((result) => set_user_repos(result));
   };
 
   const showRepos = () => {
     if (showrepos_btn) {
-
       set_usereposcontainer_opacity(0);
       setTimeout(() => {
         set_showrepos_btn(!showrepos_btn);

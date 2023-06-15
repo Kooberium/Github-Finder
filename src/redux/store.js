@@ -6,7 +6,7 @@ const favoritereposSlice = createSlice({
     initialState: JSON.parse(localStorage.getItem('favorite_repository')) || [],
     reducers: {
         addRepository(state, action) {
-            state.push(action.payload)
+            state.unshift(action.payload)
             localStorage.setItem('favorite_repository', JSON.stringify(state));
         },
         removeRepository(state, action) {
