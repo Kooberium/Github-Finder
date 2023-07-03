@@ -8,7 +8,7 @@
 .main_wrapper {
   padding-top: 20px;
   margin: auto;
-  width: 80%;
+  width: 85%;
   height: inherit;
 }
 
@@ -86,6 +86,10 @@
   border-radius: 8px;
   background-color: white;
   transition: 1s all ease-in-out;
+}
+
+.userRepos {
+  width: 100%;
 }
 
 .userinfo_reposcount {

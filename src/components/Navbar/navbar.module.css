@@ -26,3 +26,9 @@
     transition: 1s all ease-in-out;
 
 }
+
+@media screen and (max-width:1080px) {
+    	.navbar_list {
+		 font-size: 1.5vw;
+	}  
+}

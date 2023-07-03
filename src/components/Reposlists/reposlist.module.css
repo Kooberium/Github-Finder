@@ -16,7 +16,7 @@
     box-sizing: border-box;
     padding: 20px 14px;
     margin: auto;
-    width: 90%;
+    width: 100%;
     border-radius: 8px;
     min-height: 10vh;
     color: white;
@@ -38,8 +38,7 @@
 }
 
 .list_item:hover {
-    transform: scale(1.1);
-    transform: translateX(-4px);
+    background-color: rgba(85, 159, 255, 0.467);
 }
 
 .list_item_link {

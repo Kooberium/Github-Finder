@@ -9,9 +9,9 @@ import Reposlist from './Reposlist';
 
 
 const List = (props) => {
-  const fav_list = useSelector(data => data.favlist)
+  const favList = useSelector(data => data.favlist)
 
-  const whitelist = fav_list.reduce((acc, cur) => {
+  const whitelist = favList.reduce((acc, cur) => {
     acc[cur.id] = true;
     return acc
   }, {})

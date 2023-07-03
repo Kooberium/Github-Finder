@@ -9,28 +9,28 @@ import fetch from "../../api/fetch";
 import env from "react-dotenv";
 
 const Usersearch = () => {
-  const form_ref = useRef(null)
+  const formRef = useRef(null)
 
   const defaultStates = {
     input: { placeholder: "Введіть нікнейм користувача Github" },
     submit: { color: "rgb(47, 79, 79)", value: "Пошук" },
   };
 
-  const [submit_color, submit_setColor] = useState(defaultStates.submit.color || "rgb(0,0,0)");
+  const [submitColor, submitSetColor] = useState(defaultStates.submit.color || "rgb(0,0,0)");
 
-  const [usereposcontainer_opacity, set_usereposcontainer_opacity] = useState("0");
+  const [usereposcontainerOpacity, setUsereposcontainerOpacity] = useState("0");
 
-  const [input_placeholder, set_input_placeholder] = useState(defaultStates.input.placeholder);
+  const [inputPlaceholder, setInputPlaceholder] = useState(defaultStates.input.placeholder);
 
-  const [showrepos_btn, set_showrepos_btn] = useState(0);
+  const [showreposBtn, setShowreposBtn] = useState(0);
 
-  const [user_repos, set_user_repos] = useState(null);
-  const [userdata, set_user_data] = useState(null || JSON.parse(localStorage.getItem('github_user_data')));
+  const [userRepos, setUserRepos] = useState(null);
+  const [userdata, setUserData] = useState(null || JSON.parse(localStorage.getItem('github_user_data')));
 
   //////Система запобігання флудінню кнопкою пошуку
-  const [millis, set_millis] = useState(null);
-  const [flood_count, set_flood_count] = useState(0);
-  const [is_locked, set_lock] = useState(false);
+  const [millis, setMillis] = useState(null);
+  const [floodCount, setFloodCount] = useState(0);
+  const [isLocked, setLock] = useState(false);
 
 
   useEffect(() => {
@@ -45,9 +45,9 @@ const Usersearch = () => {
 
     fetch(`${API}/${username}`).then((result) => {
       if (result.message && result.message === 'Not Found') {
-        show_message('Користувача не було знайдено!', "rgb(220, 55, 60)")
+        showMessage('Користувача не було знайдено!', "rgb(220, 55, 60)")
         
-        form_ref.current.reset()
+        formRef.current.reset()
         return
       };
 
@@ -55,47 +55,47 @@ const Usersearch = () => {
       const toJSON = JSON.stringify(result);
       localStorage.setItem('github_user_data', toJSON);
 
-      set_user_data(result)
+      setUserData(result)
     });
   };
 
   const onUserSearch = (e) => {
     e.preventDefault();
 
-    if (is_locked) {
-      show_message('Зачекайте хвильку!', 'rgb(220, 55, 60)')
+    if (isLocked) {
+      showMessage('Зачекайте хвильку!', 'rgb(220, 55, 60)')
       return
     } else {
       handleFlooding();
     }
     
-    if (!form_ref) return;
-    const form = form_ref.current;
+    if (!formRef) return;
+    const form = formRef.current;
     
     const input = form.elements['controlpanel_input'];
-    const input_value = input.value;
+    const userName = input.value;
 
-    if (userdata && userdata.login === input_value) {
-      show_message("Ви вже отримали дані цього користувача!", "rgb(220, 150, 60)")
-
-      form.reset();
-      return;
-    }
-
-    if (!input_value) {
-      show_message("Ви повинні вести нікнейм користувача", "rgb(220, 150, 60)")
+    if (userdata && userdata.login === userName) {
+      showMessage("Ви вже отримали дані цього користувача!", "rgb(220, 150, 60)")
 
       form.reset();
       return;
     }
 
-    searchUser(input_value)
-    submit_change_color("rgb(0, 250, 154)");
+    if (!userName) {
+      showMessage("Ви повинні вести нікнейм користувача", "rgb(220, 150, 60)")
+
+      form.reset();
+      return;
+    }
+
+    searchUser(userName)
+    submitChangeColor("rgb(0, 250, 154)");
   };
 
   const onInputActivate = () => {
-    submit_setColor(defaultStates.submit.color);
-    set_input_placeholder(defaultStates.input.placeholder);
+    submitSetColor(defaultStates.submit.color);
+    setInputPlaceholder(defaultStates.input.placeholder);
   };
 
 
@@ -103,38 +103,38 @@ const Usersearch = () => {
     if (!userdata) return;
     if (!userdata.repos_url) return;
     
-    await fetch(userdata.repos_url).then((result) => set_user_repos(result));
+    await fetch(userdata.repos_url).then((result) => setUserRepos(result));
   };
 
   const showRepos = () => {
-    if (showrepos_btn) {
-      set_usereposcontainer_opacity(0);
+    if (showreposBtn) {
+      setUsereposcontainerOpacity(0);
       setTimeout(() => {
-        set_showrepos_btn(!showrepos_btn);
+        setShowreposBtn(!showreposBtn);
       }, 500);
 
     } else {
 
-      set_showrepos_btn(!showrepos_btn);
-      set_usereposcontainer_opacity(1);
+      setShowreposBtn(!showreposBtn);
+      setUsereposcontainerOpacity(1);
       
     }
   };
 
 
-  const submit_change_color = (rgb) => {
+  const submitChangeColor = (rgb) => {
     if (!rgb) return;
     if (typeof rgb !== 'string') return;
 
-    submit_setColor(rgb)
+    submitSetColor(rgb)
 
     setTimeout(() => {
-      submit_setColor(defaultStates.submit.color)
-      set_input_placeholder(defaultStates.input.placeholder)
+      submitSetColor(defaultStates.submit.color)
+      setInputPlaceholder(defaultStates.input.placeholder)
     }, 2000);
   };
 
-  const show_message = (text, rgb) => {
+  const showMessage = (text, rgb) => {
     if (!text) return;
     if (typeof text !== 'string') return;
 
@@ -142,34 +142,39 @@ const Usersearch = () => {
     if (typeof rgb !== 'string') return;
 
 
-    set_input_placeholder(text);
-    submit_change_color(rgb);
+    setInputPlaceholder(text);
+    submitChangeColor(rgb);
   };
 
   const handleFlooding = () => {
-    if (!is_locked && flood_count >= 5) {
-      set_lock(true);
-      setTimeout(set_lock, 5000, false);
+    if (!isLocked && floodCount >= 5) {
+      setLock(true);
+      setTimeout(handleUnlock, 5000);
       return;
     };
 
-    if (millis && Date.now() - millis < 1000) set_flood_count(flood_count + 1);
+    if (millis && Date.now() - millis < 1000) setFloodCount(floodCount + 1);
 
-    set_millis(Date.now());
+    setMillis(Date.now());
+  };
+
+  const handleUnlock = () => {
+      setFloodCount(0);
+      setLock(false);
   };
 
   return (
     <main className={styles.main}>
       <div className={styles.main_wrapper}>
-        <form className={styles.userfinder_controlpanel} ref={form_ref}>
+        <form className={styles.userfinder_controlpanel} ref={formRef}>
           <input
             onClick={onInputActivate}
             id="controlpanel_input"
             type="text"
-            placeholder={input_placeholder}
+            placeholder={inputPlaceholder}
           />
           <input
-            style={{ backgroundColor: submit_color }}
+            style={{ backgroundColor: submitColor }}
             onClick={onUserSearch}
             id="controlpanel_submit"
             type="submit"
@@ -186,17 +191,14 @@ const Usersearch = () => {
                 <p className={styles.userinfo_reposcount}>Знайдено {userdata.public_repos} репозиторіїв...</p>
 
                 {userdata && userdata.public_repos > 0 ? (
-                  <button onClick={showRepos} className={styles.userinfo_control_btn}>{showrepos_btn ? 'Згорнути' : 'Розгорнути'}</button>
+                  <button onClick={showRepos} className={styles.userinfo_control_btn}>{showreposBtn ? 'Згорнути' : 'Розгорнути'}</button>
                 ) : (<></>)}
               </div> 
             </div>
 
-            <div
-              className={styles.user_repos}
-              style={{ opacity: usereposcontainer_opacity, display: `${showrepos_btn ? 'block' : 'none'}` }}
-            >
-              {user_repos && showrepos_btn ? (
-                <List name={userdata.name} data={user_repos}></List>
+            <div className={styles.userRepos} style={{ opacity: usereposcontainerOpacity, display: `${showreposBtn ? 'block' : 'none'}` }}>
+              {userRepos && showreposBtn ? (
+                <List name={userdata.name} data={userRepos}></List>
               ) : (
                 <></>
               )}

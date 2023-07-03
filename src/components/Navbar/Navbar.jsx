@@ -7,11 +7,11 @@ import { pagesData } from '../../router/router'
 
 const Navbar = () => {
 
-  const current_url = window.origin
-  const current_fullurl = window.navigation.currentEntry.url;
+  const currentURL = window.origin
+  const currentFullURL = window.navigation.currentEntry.url;
 
   const isURLMatch = (route) => {
-    return `${current_url}${route}` === current_fullurl;
+    return `${currentURL}${route}` === currentFullURL;
   };
 
 
@@ -20,7 +20,7 @@ const Navbar = () => {
         <nav className={styles.navbar_navigation}>
             <ul className={styles.navbar_list}>
                 {pagesData.map((el, i) => <li key={i}>
-                    <a className={isURLMatch(el.path) ? styles.navbar_link_current : styles.navbar_link_default} href={`${current_url}${el.path}`}>{el.name}</a>
+                    <a className={isURLMatch(el.path) ? styles.navbar_link_current : styles.navbar_link_default} href={`${currentURL}${el.path}`}>{el.name}</a>
                 </li>)}
             </ul>
         </nav>
