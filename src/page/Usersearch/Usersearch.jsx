@@ -18,7 +18,7 @@ const Usersearch = () => {
 
   const [submitColor, submitSetColor] = useState(defaultStates.submit.color || "rgb(0,0,0)");
 
-  const [usereposcontainerOpacity, setUsereposcontainerOpacity] = useState("0");
+  const [useReposContainerOpacity, setUserReposContainerOpacity] = useState("0");
 
   const [inputPlaceholder, setInputPlaceholder] = useState(defaultStates.input.placeholder);
 
@@ -108,7 +108,7 @@ const Usersearch = () => {
 
   const showRepos = () => {
     if (showreposBtn) {
-      setUsereposcontainerOpacity(0);
+      setUserReposContainerOpacity(0);
       setTimeout(() => {
         setShowreposBtn(!showreposBtn);
       }, 500);
@@ -116,7 +116,7 @@ const Usersearch = () => {
     } else {
 
       setShowreposBtn(!showreposBtn);
-      setUsereposcontainerOpacity(1);
+      setUserReposContainerOpacity(1);
       
     }
   };
@@ -196,7 +196,7 @@ const Usersearch = () => {
               </div> 
             </div>
 
-            <div className={styles.userRepos} style={{ opacity: usereposcontainerOpacity, display: `${showreposBtn ? 'block' : 'none'}` }}>
+            <div className={styles.userRepos} style={{ opacity: useReposContainerOpacity, display: `${showreposBtn ? 'block' : 'none'}` }}>
               {userRepos && showreposBtn ? (
                 <List name={userdata.name} data={userRepos}></List>
               ) : (
