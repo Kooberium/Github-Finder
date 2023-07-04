@@ -192,21 +192,17 @@ const Usersearch = () => {
 
                 {userdata && userdata.public_repos > 0 ? (
                   <button onClick={showRepos} className={styles.userinfo_control_btn}>{showreposBtn ? 'Згорнути' : 'Розгорнути'}</button>
-                ) : (<></>)}
+                ) : null}
               </div> 
             </div>
 
             <div className={styles.userRepos} style={{ opacity: useReposContainerOpacity, display: `${showreposBtn ? 'block' : 'none'}` }}>
               {userRepos && showreposBtn ? (
                 <List name={userdata.name} data={userRepos}></List>
-              ) : (
-                <></>
-              )}
+              ) : null}
             </div>
           </div>
-        ) : (
-          <></>
-        )}
+        ) : null}
       </div>
     </main>
   );

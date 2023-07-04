@@ -36,15 +36,15 @@ const Userinfo = (props) => {
                 <li className={styles.userinfo_listitem}>
                     <div className={styles.userinfo_timewrapper}>
                       <p title='Дата створення аккаунту'>{created_date || unknown}</p>
-                      <span>/</span>
+                      <span>|</span>
                       <p title='Дата останнього оновлення'>{updateddate || unknown}</p>
                     </div>
                 </li> 
                 <li className={styles.userinfo_listitem}>
                     <div className={styles.userinfo_subs}>
                       {/* {Цей метод знизу це мій власний метод який скорочує великі числа і робить їм приставку "k" щоб займали менше простору} */}
-                      <p>Підписники - {util_reducenumber(followers)}</p>
-                      <p>Підписок - {util_reducenumber(following)}</p>
+                      <p>Підписники  {util_reducenumber(followers)}</p>
+                      <p>Підписок {util_reducenumber(following)}</p>
                     </div>
                 </li>
             </ul>
