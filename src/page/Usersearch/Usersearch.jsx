@@ -185,7 +185,7 @@ const Usersearch = () => {
         {userdata ? (
           <div className={styles.userfinder_content}>
             <div className={styles.user_info}>
-              <Userinfo name={userdata.name || userdata.login} avatar_url={userdata.avatar_url} followers={userdata.followers} following={userdata.following} company={userdata.company} location={userdata.location} created={userdata.created_at} updated={userdata.updated_at}/>
+              <Userinfo name={userdata.name || userdata.login} avatar_url={userdata.avatar_url} followers={userdata.followers} following={userdata.following} company={userdata.company} location={userdata.location} created={userdata.created_at} updated={userdata.updated_at} github_profile={userdata.html_url}/>
 
               <div className={styles.userinfo_control}>
                 <p className={styles.userinfo_reposcount}>Знайдено {userdata.public_repos} репозиторіїв...</p>

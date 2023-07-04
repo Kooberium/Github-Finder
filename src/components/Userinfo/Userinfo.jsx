@@ -22,7 +22,7 @@ const Userinfo = (props) => {
         <div className={styles.userinfo_window}>
             <ul className={styles.userinfo_list}>
                 <li className={styles.userinfo_listitem}>
-                    <img className={styles.userinfo_avatar} src={avatar}alt="Name" />
+                    <a target='_blank' href={props.github_profile}><img className={styles.userinfo_avatar} src={avatar}alt="Name" /></a>
                     <p>{name}</p>
                 </li>
                 <li className={styles.userinfo_listitem}>
