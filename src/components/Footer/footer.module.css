@@ -23,9 +23,6 @@
     min-height: inherit;
 }
 
-.logo {
-    width: 4vw;
-}
 
 .title {
     font-size: 1vw;
@@ -39,5 +36,8 @@
 }
 
 .git_icon {
-    width: 2vw;
+    max-width: 4vw;
+    max-height: 4vh;
+    width: 100%;
+    height: 100%;
 }

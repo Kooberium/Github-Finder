@@ -11,6 +11,8 @@ const Footer = () => {
             <p className={styles.title}>©Kooberium</p>
             <a href='https://github.com/Kooberium/Github-Finder' target='_blank' className={styles.link}><img className={styles.git_icon} src={Logo} alt="Github Icon" /></a>
         </div>
+
+        
     </footer>
   )
 }

@@ -12,7 +12,7 @@ const pages_data= [
       element: <Usersearch />,
     },
     {
-      name: 'Favorite',
+      name: 'Favorites',
       path: "/favrepos",
       element: <Favrepos />,
     },
