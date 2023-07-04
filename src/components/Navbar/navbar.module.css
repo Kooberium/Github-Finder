@@ -15,16 +15,21 @@
 
 .navbar_link_default {
     text-decoration: none;
-    color:  rgb(243, 243, 243);
+    color:  rgb(0, 0, 0);
     transition: 1s all ease-in-out;
+    background: rgb(255, 255, 255);
+    padding: 4px 8px;
+    border-radius: 8px;
 }
 
 
 .navbar_link_current {
     text-decoration: none;
-    color:  rgb(227, 27, 104);
+    color:  rgb(234, 234, 234);
     transition: 1s all ease-in-out;
-
+    background: rgb(227, 27, 104);
+    padding: 4px 8px;
+    border-radius: 8px;
 }
 
 @media screen and (max-width:1080px) {
