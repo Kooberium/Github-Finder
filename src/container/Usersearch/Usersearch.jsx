@@ -21,6 +21,7 @@ const Usersearch = () => {
   const [useReposContainerOpacity, setUserReposContainerOpacity] = useState("0");
 
   const [inputPlaceholder, setInputPlaceholder] = useState(defaultStates.input.placeholder);
+  const [inputValue, setInputValue] = useState('');
 
   const [showreposBtn, setShowreposBtn] = useState(0);
 
@@ -72,8 +73,7 @@ const Usersearch = () => {
     if (!formRef) return;
     const form = formRef.current;
     
-    const input = form.elements['controlpanel_input'];
-    const userName = input.value;
+    const userName = inputValue
 
     if (userdata && userdata.login === userName) {
       showMessage("Ви вже отримали дані цього користувача!", "rgb(220, 150, 60)")
@@ -163,12 +163,24 @@ const Usersearch = () => {
       setLock(false);
   };
 
+  const clearSearchData = () => {
+      setUserData(null)
+      setInputValue('')
+
+
+      if (JSON.parse(localStorage.getItem('github_user_data'))) {
+        localStorage.clear('github_user_data')
+      };
+  };
+
   return (
     <main className={styles.main}>
       <div className={styles.main_wrapper}>
         <form className={styles.userfinder_controlpanel} ref={formRef}>
           <input
             onClick={onInputActivate}
+            onChange={(e) => setInputValue(e.target.value)}
+            value={inputValue}
             id="controlpanel_input"
             type="text"
             placeholder={inputPlaceholder}
@@ -185,7 +197,7 @@ const Usersearch = () => {
         {userdata ? (
           <div className={styles.userfinder_content}>
             <div className={styles.user_info}>
-              <Userinfo name={userdata.name || userdata.login} avatar_url={userdata.avatar_url} followers={userdata.followers} following={userdata.following} company={userdata.company} location={userdata.location} created={userdata.created_at} updated={userdata.updated_at} github_profile={userdata.html_url}/>
+              <Userinfo clearData={clearSearchData} name={userdata.name || userdata.login} avatar_url={userdata.avatar_url} followers={userdata.followers} following={userdata.following} company={userdata.company} location={userdata.location} created={userdata.created_at} updated={userdata.updated_at} github_profile={userdata.html_url}/>
 
               <div className={styles.userinfo_control}>
                 <p className={styles.userinfo_reposcount}>Знайдено {userdata.public_repos} репозиторіїв...</p>

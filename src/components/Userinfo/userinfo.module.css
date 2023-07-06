@@ -6,6 +6,7 @@
     font-family: 'Ubuntu';
     border-radius: 8px;
     flex-grow: 1;
+    position: relative;
 }
 
 .userinfo_list {
@@ -76,6 +77,18 @@
     display: -webkit-flex;
 }
 
+.resultclear_btn {
+    width: 16px;
+    height: 16px;
+    border: none;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url('../../assets/bin_icon.ico');
+    position: absolute;
+    left: calc(100% - 16px);
+    top: 0px;
+    cursor: pointer;
+}
 
 
 @media screen and (max-width: 1080px) {

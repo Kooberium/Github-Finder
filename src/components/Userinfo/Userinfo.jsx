@@ -48,6 +48,7 @@ const Userinfo = (props) => {
                     </div>
                 </li>
             </ul>
+            <button title='Очистити результ пошуку' onClick={() => {props.clearData()}} className={styles.resultclear_btn}></button>
         </div>
   )
 }

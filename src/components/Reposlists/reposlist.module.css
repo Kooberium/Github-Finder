@@ -6,12 +6,12 @@
     box-sizing: border-box;
     list-style: none;
     width: 100%;
-    max-height: 50vh;
+    max-height: 55vh;
     overflow-y: scroll;
     overflow-x: hidden;
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
-    padding: 10px 8px;	
+    padding: 10px 18px;	
 }
 
 .list::-webkit-scrollbar {
