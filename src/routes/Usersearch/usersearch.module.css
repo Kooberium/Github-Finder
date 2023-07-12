@@ -90,6 +90,8 @@
 
 .userRepos {
   width: 100%;
+  height: 50vh;
+  overflow: hidden;
 }
 
 .userinfo_reposcount {
@@ -161,4 +163,4 @@
   .userinfo_control_btn {
     font-size: 2vw;
   }
-}/*# sourceMappingURL=usersearch.module.css.map */
+}

@@ -2,7 +2,7 @@ import React from 'react'
 
 import styles from './navbar.module.css'
 
-import { pagesData } from '../../router/router'
+import { routesData } from '../../router/router'
 
 
 const Navbar = () => {
@@ -19,7 +19,7 @@ const Navbar = () => {
     <div className={styles.navbar_wrapper}>
         <nav className={styles.navbar_navigation}>
             <ul className={styles.navbar_list}>
-                {pagesData.map((el, i) => <li key={i}>
+                {routesData.map((el, i) => <li key={i}>
                     <a className={isURLMatch(el.path) ? styles.navbar_link_current : styles.navbar_link_default} href={`${currentURL}${el.path}`}>{el.name}</a>
                 </li>)}
             </ul>

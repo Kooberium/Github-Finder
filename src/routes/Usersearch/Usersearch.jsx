@@ -32,39 +32,44 @@ const Usersearch = () => {
   const [millis, setMillis] = useState(null);
   const [floodCount, setFloodCount] = useState(0);
   const [isLocked, setLock] = useState(false);
+  const [showingAlert, setShowingAlert] = useState(false);
 
 
   useEffect(() => {
     fetchRepos();
   }, [userdata]);
 
-  const searchUser = (username) => {
-    if (!username) return 'USERNAME ERROR'
-
+  const searchUser = async (username) => {
+    if (!username) return;
     const API = env.API_URL;
     if (!API) return 'API ERROR';
 
-    fetch(`${API}/${username}`).then((result) => {
-      if (result.message && result.message === 'Not Found') {
-        showMessage('Користувача не було знайдено!', "rgb(220, 55, 60)")
-        
-        formRef.current.reset()
-        return
-      };
-
-
-      const toJSON = JSON.stringify(result);
-      localStorage.setItem('github_user_data', toJSON);
-
-      setUserData(result)
-    });
+    try {
+      fetch(`${API}/${username}`).then((result) => {
+        if (result.message && result.message === 'Not Found') {
+          showMessage('Користувача не було знайдено!', "rgb(220, 55, 60)")
+          setInputValue('')
+          formRef.current.reset()
+          return
+        };
+  
+  
+        const toJSON = JSON.stringify(result);
+        localStorage.setItem('github_user_data', toJSON);
+  
+        setUserData(result)
+      });
+    } catch(err) {
+      console.log(err);
+    }
   };
 
   const onUserSearch = (e) => {
     e.preventDefault();
-
     if (isLocked) {
       showMessage('Зачекайте хвильку!', 'rgb(220, 55, 60)')
+      inputResetToDefault(5000);
+      setInputValue('')
       return
     } else {
       handleFlooding();
@@ -77,20 +82,21 @@ const Usersearch = () => {
 
     if (userdata && userdata.login === userName) {
       showMessage("Ви вже отримали дані цього користувача!", "rgb(220, 150, 60)")
-
+      setInputValue('')
+      
       form.reset();
       return;
     }
 
     if (!userName) {
       showMessage("Ви повинні вести нікнейм користувача", "rgb(220, 150, 60)")
-
       form.reset();
       return;
     }
 
     searchUser(userName)
     submitChangeColor("rgb(0, 250, 154)");
+    console.log('test2');
   };
 
   const onInputActivate = () => {
@@ -103,7 +109,11 @@ const Usersearch = () => {
     if (!userdata) return;
     if (!userdata.repos_url) return;
     
-    await fetch(userdata.repos_url).then((result) => setUserRepos(result));
+    try {
+        await fetch(userdata.repos_url).then((result) => setUserRepos(result))
+    } catch(err) {
+        console.log(err);
+    }
   };
 
   const showRepos = () => {
@@ -125,16 +135,11 @@ const Usersearch = () => {
   const submitChangeColor = (rgb) => {
     if (!rgb) return;
     if (typeof rgb !== 'string') return;
-
     submitSetColor(rgb)
-
-    setTimeout(() => {
-      submitSetColor(defaultStates.submit.color)
-      setInputPlaceholder(defaultStates.input.placeholder)
-    }, 2000);
   };
 
   const showMessage = (text, rgb) => {
+    if (showingAlert) return;
     if (!text) return;
     if (typeof text !== 'string') return;
 
@@ -144,6 +149,17 @@ const Usersearch = () => {
 
     setInputPlaceholder(text);
     submitChangeColor(rgb);
+    // setShowingAlert(true)
+  };
+
+  const inputResetToDefault = (time = 2000) => {
+      if (typeof time !== 'number') time = 2000;
+
+      setTimeout(() => {
+      submitSetColor(defaultStates.submit.color)
+      setInputPlaceholder(defaultStates.input.placeholder)
+      setShowingAlert(false)
+      }, time);
   };
 
   const handleFlooding = () => {
@@ -169,7 +185,7 @@ const Usersearch = () => {
 
 
       if (JSON.parse(localStorage.getItem('github_user_data'))) {
-        localStorage.clear('github_user_data')
+        localStorage.removeItem('github_user_data')
       };
   };
 

@@ -2,10 +2,10 @@ import React from 'react'
 import {Routes,Route} from 'react-router-dom';
 
 
-import Usersearch from "../container/Usersearch/Usersearch"
-import Favrepos from '../container/Favrepos/Favrepos';
+import Usersearch from "../routes/Usersearch/Usersearch"
+import Favrepos from '../routes/Favrepos/Favrepos';
 
-const pages_data= [
+export const routesData = [
     { 
       name: 'Home',
       path: "/",
@@ -16,14 +16,16 @@ const pages_data= [
       path: "/favrepos",
       element: <Favrepos />,
     },
-];
+]; 
+//Короткий опис чому це масив з об'єктами , я описую структуру в виді об'єкту що це є маршрут з назвою , шляхом та елементом який воно буде віддавати
+// Так є дуже удобно менеджити нові маршрути, просто описав новий obj і створив новий маршрут, плюс в інакших облястях коду я використовую цей масив активно
 
-export const pagesData = pages_data;
+
 
 const router = () => {
   return (
     <Routes>
-        {pages_data.map(({path, element}, i) => <Route key={i} path={path} element={element} ></Route>)}
+        {routesData.map(({path, element}, i) => <Route key={i} path={path} element={element} ></Route>)}
     </Routes>
   )
 }

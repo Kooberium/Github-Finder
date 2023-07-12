@@ -6,6 +6,9 @@ import List from '../../components/Reposlists/Reposlists';
 
 import {useSelector} from 'react-redux';
 
+
+import waveBackground from '../../assets/wave.svg'
+
 const Favrepos = () => {
   const favList = useSelector(data => data.favlist);
 
@@ -23,6 +26,7 @@ const Favrepos = () => {
             )} 
            
         </div>
+        <img className={styles.background_wave} src={waveBackground} alt="Wave" />
     </div>
   )
 }
