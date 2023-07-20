@@ -39,7 +39,7 @@ const Reposlist = (props) => {
             <button onClick={()=> {markRepose(props.id, props.name, props.link)}} className={styles.claim_btn}>Mark</button>
           )}
         </li>
-        ) : (<></>)
+        ) : null
         }
     </>
   );

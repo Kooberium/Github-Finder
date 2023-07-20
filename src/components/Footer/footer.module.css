@@ -19,9 +19,9 @@
 .footer::before {
     transition: 0.5s all ease-in-out;
     content: '';
-    width: 32px;
+    width: 16px;
     height: 100%;
-    background-color: sandybrown;
+    background-color: rgb(255, 255, 255);
     position: absolute;
     left: 0;
     top: 0;
@@ -29,7 +29,7 @@
 
 .footer:hover::before {
     left: calc(100% - 32px);
-    background-color: rgb(252, 22, 61);
+    background-color: rgb(129, 129, 129);
 }
 
 .footer:hover {

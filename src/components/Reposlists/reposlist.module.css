@@ -28,7 +28,7 @@
     min-height: 10vh;
     color: white;
     font-size: 1.2vw;
-    background-color: rgb(59, 144, 255);
+    background-color: rgb(47, 79, 79);
     transition: 0.4s all ease-in-out;
     cursor: pointer;
     display: flex;
@@ -37,15 +37,15 @@
 }
 
 .list_item_marked {
-    border-left: 12px solid rgb(30, 247, 178);
+    border-left: 12px solid rgb(108, 230, 139);
 }
 
 .list_item_unmarked {
-    border-left: 12px solid rgb(247, 30, 120);
+    border-left: 12px solid rgb(255, 255, 255);
 }
 
 .list_item:hover {
-    background-color: rgba(85, 159, 255, 0.6);
+    background-color: rgba(47, 79, 79, 0.781);
 }
 
 .list_item_link {
