@@ -29,14 +29,64 @@
 }
 
 .userinfo_subs {
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     display: -webkit-flex;
-    align-items: flex-end;
+    align-items: flex-start;
     width: 100%;
     row-gap: 4px;
     margin: auto;
+    text-align: left;
 }
+
+.userinfo_followers {
+    width: 35%;
+    padding: 6px 9px;
+    background-color: goldenrod;
+    color: whitesmoke;
+    border-radius: 8px;
+    font-size: 1vw;
+    white-space: nowrap;
+}
+
+.userinfo_following {
+    width: 35%;
+    padding: 6px 9px;
+    background-color: goldenrod;
+    color: whitesmoke;
+    border-radius: 8px;
+    font-size: 1vw;
+    white-space: nowrap;
+}
+
+.userinfo_timewrapper {
+    width: 100%;
+    column-gap: 8px;
+    justify-content: center;
+    display: flex;
+    display: -webkit-flex;
+    color: whitesmoke;
+}
+
+.userinfo_createdDate {
+    width: 35%;
+    padding: 4px 7px;
+    background-color: rgb(40, 230, 243);
+    border-radius: 8px;
+    font-size: 1vw;
+    cursor: pointer;
+}
+
+.userinfo_updatedDate {
+    width: 35%;
+    padding: 4px 7px;
+    background-color: rgb(39, 241, 147);
+    border-radius: 8px;
+    font-size: 1vw;
+    cursor: pointer;
+}
+
 
 .userinfo_list{
     display: flex;
@@ -69,13 +119,7 @@
     font-size: 1vw;
 }
 
-.userinfo_timewrapper {
-    width: 100%;
-    column-gap: 8px;
-    justify-content: flex-end;
-    display: flex;
-    display: -webkit-flex;
-}
+
 
 .resultclear_btn {
     width: 16px;

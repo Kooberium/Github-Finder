@@ -28,7 +28,7 @@
 }
 
 .footer:hover::before {
-    left: calc(100% - 32px);
+    left: calc(100% - 16px);
     background-color: rgb(129, 129, 129);
 }
 
