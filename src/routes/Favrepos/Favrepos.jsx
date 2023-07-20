@@ -6,11 +6,12 @@ import List from '../../components/Reposlists/Reposlists';
 
 import {useSelector} from 'react-redux';
 
+import getFavRepos from '../../redux/selectors';
 
 import waveBackground from '../../assets/wave.svg'
 
 const Favrepos = () => {
-  const favList = useSelector(data => data.favlist);
+  const favList = useSelector(getFavRepos);
 
   return (
     <div className={styles.favrepos_content}>
