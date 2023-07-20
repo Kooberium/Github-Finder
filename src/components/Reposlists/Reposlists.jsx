@@ -2,14 +2,15 @@ import React from "react";
 
 import styles from "./reposlist.module.css";
 
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector} from 'react-redux';
+import getFavRepos from '../../redux/selectors';
 
 import Reposlist from './Reposlist';
 
 
 
 const List = (props) => {
-  const favList = useSelector(data => data.favlist)
+  const favList = useSelector(getFavRepos)
 
   const whitelist = favList.reduce((acc, cur) => {
     acc[cur.id] = true;
