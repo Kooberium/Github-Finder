@@ -14,8 +14,9 @@
 }
 
 .userinfo_avatar {
+    box-sizing: border-box;
     border-radius: 50%;
-    width: 3vw;
+    width: 5vw;
 }
 
 .userinfo_icon {
@@ -58,25 +59,38 @@
     white-space: nowrap;
 }
 
-.userinfo_timewrapper {
+.userinfo_datewrapper {
     width: 100%;
     column-gap: 8px;
-    justify-content: flex-start;
+    justify-content: space-between;
     display: flex;
     display: -webkit-flex;
     color: whitesmoke;
 }
 
+.userinfo_dateinfo {
+    width: 100%;
+}
+
+.userinfo_dateinfo_title {
+    margin-bottom: 7px;
+    font-size: 1px;
+    font-weight: 600;
+    color: rgb(3, 3, 3);
+    white-space: nowrap;
+    overflow: hidden;
+}
+
 .userinfo_createdDate {
-    width: 35%;
+    width: 100%;
     padding: 4px 2px;
-    background-color: rgb(0, 135, 145);
+    background-color: rgb(51, 185, 123);
     border-radius: 8px;
     cursor: pointer;
 }
 
 .userinfo_updatedDate {
-    width: 35%;
+    width: 100%;
     padding: 4px 2px;
     background-color: rgb(1, 170, 182);
     border-radius: 8px;
@@ -123,6 +137,7 @@
     border: none;
     background-repeat: no-repeat;
     background-size: cover;
+    background-color: rgba(0, 0, 0, 0);
     background-image: url('../../assets/bin_icon.ico');
     position: absolute;
     left: calc(100% - 16px);

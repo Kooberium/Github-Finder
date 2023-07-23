@@ -34,9 +34,16 @@ const Userinfo = (props) => {
                     <p>{location || unknown}</p>
                 </li> 
                 <li className={styles.userinfo_listitem}>
-                    <div className={styles.userinfo_timewrapper}>
+                    <div className={styles.userinfo_datewrapper}>
+                        <div className={styles.userinfo_dateinfo}>
+                        <p className={styles.userinfo_dateinfo_title}>Учасник з</p>
                         <p className={styles.userinfo_createdDate} title='Дата створення аккаунту'>{created_date || unknown}</p>
+                        </div>
+
+                        <div className={styles.userinfo_dateinfo}>
+                        <p className={styles.userinfo_dateinfo_title}>Останнє оновлення</p>
                         <p className={styles.userinfo_updatedDate}  title='Дата останнього оновлення аккаунту'>{updateddate || unknown}</p>
+                        </div>
                     </div>
                 </li> 
                 <li className={styles.userinfo_listitem}>
